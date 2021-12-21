@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import Http404
 
-from inventory.models import Item
+from firstdjango.models import Item
 
-
-def index(request):
-	items = Item.objects.exclude(amount=0)
-	return render(request, 'inventory/index.html', {
+def home(request):
+	items = Item.objects.all()
+	return render(request, 'home.html', {
 		'items': items,
 	})
 
@@ -15,6 +14,6 @@ def item_detail(request, id):
 		item = Item.objects.get(id=id)
 	except Item.DoesNotExist:
 		raise Http404('This item does not exist')
-	return render(request, 'inventory/item_detail.html', {
+	return render(request, 'item_detail.html', {
 		'item': item,
 	})
