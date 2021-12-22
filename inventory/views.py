@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 
-from firstdjango.models import Item
+from inventory.models import Item
 
 def home(request):
 	items = Item.objects.all()
